@@ -1,0 +1,26 @@
+.heading {
+  display: flex;
+}
+.heading_name,
+.heading_population {
+  flex: 1;
+  border: none;
+  background-color: transparent;
+  color: var(--text-color-secondary);
+  outline: none;
+  padding: 24px;
+}
+
+.rows {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 8px;
+  background-color: var(--background-color);
+}
+.rows {
+  margin-bottom: 5px;
+}
+
+.rows_name,
+.rows_population {
+}
