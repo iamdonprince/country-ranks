@@ -5,7 +5,6 @@ import SearchInput from "../components/SearchInput/SearchInput";
 import styles from "../styles/Home.module.css";
 
 export default function Home({ countries }) {
-  console.log(countries);
   return (
     <Layout className={styles.container}>
       <div className={styles.counts}>Found {countries.length} Countries</div>
