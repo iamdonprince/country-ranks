@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import CountriesTable from "../components/CountriesTable/CountriesTable";
 import Layout from "../components/Layout/Layout";
@@ -5,14 +6,35 @@ import SearchInput from "../components/SearchInput/SearchInput";
 import styles from "../styles/Home.module.css";
 
 export default function Home({ countries }) {
+  const [keyWords, setKeyWords] = useState("");
+  const [filterCountries, setFilterCountries] = useState(countries);
+
+  const filteredSearch = () => {
+    const filtered = countries.filter(
+      (country) =>
+        country.name.toLowerCase().includes(keyWords) ||
+        country.region.toLowerCase().includes(keyWords) ||
+        country.subregion.toLowerCase().includes(keyWords)
+    );
+    setFilterCountries(filtered);
+  };
+
+  const onInputChange = (e) => {
+    setKeyWords(e.target.value.toLowerCase());
+    filteredSearch();
+  };
+  console.log(filterCountries);
   return (
     <Layout className={styles.container}>
       <div className={styles.counts}>Found {countries.length} Countries</div>
       <SearchInput
+        onInputChange={onInputChange}
+        value={keyWords}
+        filteredSearch={filteredSearch}
         type="text"
         placeholder="Filter by Name, Region, Subregion"
       />
-      <CountriesTable countries={countries} />
+      <CountriesTable countries={filterCountries} />
     </Layout>
   );
 }

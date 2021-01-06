@@ -1,11 +1,16 @@
 import React from "react";
 import styles from "./searchInput.module.css";
 import SearchRounded from "@material-ui/icons/SearchRounded";
-function SearchInput({ ...rest }) {
+function SearchInput({ onInputChange, value, filteredSearch, ...rest }) {
   return (
     <div className={styles.wrapper}>
-      <SearchRounded className={styles.searchInput} />
-      <input className={styles.input} {...rest} />
+      <SearchRounded onClick={filteredSearch} className={styles.searchInput} />
+      <input
+        value={value}
+        onChange={onInputChange}
+        className={styles.input}
+        {...rest}
+      />
     </div>
   );
 }
