@@ -16,7 +16,6 @@ const orderBy = (countries, value, direction) => {
 };
 
 const ArrowComp = ({ direction }) => {
-  console.log(direction);
   if (!direction) {
     return <></>;
   }
@@ -76,12 +75,12 @@ function CountriesTable({ countries }) {
         </button>
       </div>
       {countriesData.map((country) => (
-      <Link href={`/country/${country.alpha2Code}`}  key={country.alpha3Code} >
-          <div className={styles.rows} >
-          <div className={styles.rows_name}>{country.name}</div>
-          <div className={styles.rows_population}>{country.population}</div>
-        </div>
-      </Link>
+        <Link href={`/country/${country.alpha2Code}`} key={country.alpha3Code}>
+          <div className={styles.rows}>
+            <div className={styles.rows_name}>{country.name}</div>
+            <div className={styles.rows_population}>{country.population}</div>
+          </div>
+        </Link>
       ))}
     </div>
   );

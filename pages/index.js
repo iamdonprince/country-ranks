@@ -23,7 +23,7 @@ export default function Home({ countries }) {
     setKeyWords(e.target.value.toLowerCase());
     filteredSearch();
   };
-  console.log(filterCountries);
+
   return (
     <Layout className={styles.container}>
       <div className={styles.counts}>Found {countries.length} Countries</div>

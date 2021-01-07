@@ -11,7 +11,7 @@ function Layout({ children, title = "Countries Rank" }) {
         <link rel="stylesheet" href="/favicon.icon" />
       </Head>
       <header className={styles.header}>
-        <Link href="/">
+        <Link href="/" style={{ cursor: "pointer" }}>
           <svg
             width="226"
             height="29"
