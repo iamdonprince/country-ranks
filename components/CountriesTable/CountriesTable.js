@@ -5,7 +5,7 @@ import {
 import Link from "next/link";
 import React, { useState } from "react";
 import styles from "./countreis.module.css";
-
+import Image from "next/image";
 const orderBy = (countries, value, direction) => {
   if (direction === "asc") {
     return [...countries].sort((a, b) => (a[value] > b[value] ? 1 : -1));
@@ -73,12 +73,38 @@ function CountriesTable({ countries }) {
           <div>Population</div>
           {value === "population" && <ArrowComp direction={direction} />}
         </button>
+        <button
+          className={styles.heading_area}
+          onClick={() => setValueAndCallDirection("area")}
+        >
+          <div>
+            Area(Km<sup>2</sup>)
+          </div>
+          {value === "Area" && <ArrowComp direction={direction} />}
+        </button>
+        <button
+          className={styles.heading_gini}
+          onClick={() => setValueAndCallDirection("gini")}
+        >
+          <div>Gini</div>
+          {value === "Area" && <ArrowComp direction={direction} />}
+        </button>
       </div>
       {countriesData.map((country) => (
         <Link href={`/country/${country.alpha2Code}`} key={country.alpha3Code}>
           <div className={styles.rows}>
+            <div className={styles.rows_flag}>
+              <Image
+                width={80}
+                height={60}
+                src={country.flag}
+                alt={country.name}
+              />
+            </div>
             <div className={styles.rows_name}>{country.name}</div>
             <div className={styles.rows_population}>{country.population}</div>
+            <div className={styles.rows_area}>{country.area}</div>
+            <div className={styles.rows_gini}>{country.gini}</div>
           </div>
         </Link>
       ))}

@@ -2,7 +2,10 @@
   display: flex;
 }
 .heading_name,
-.heading_population {
+.heading_population,
+.heading_gini,
+.heading_area,
+.rows_flag {
   flex: 1;
   border: none;
   background-color: transparent;
@@ -28,12 +31,13 @@
 .rows {
   display: flex;
   text-align: center;
-  padding: 20px;
+  padding: 5px;
   cursor: pointer;
   margin-bottom: 16px;
   box-shadow: var(--box-shadow);
   background-color: var(--background-color-light);
   border-radius: 8px;
+  align-items: center;
   transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
 }
 .rows:hover {
@@ -46,4 +50,14 @@
 }
 .rows_population {
   flex: 1;
+}
+.rows_area {
+  flex: 1;
+}
+.rows_gini {
+  flex: 1;
+}
+.rows_flag {
+  flex: 1;
+  align-self: flex-start;
 }
