@@ -103,14 +103,14 @@ function CountriesTable({ countries }) {
           <div>
             Area(Km<sup>2</sup>)
           </div>
-          {value === "Area" && <ArrowComp direction={direction} />}
+          {value === "area" && <ArrowComp direction={direction} />}
         </button>
         <button
           className={styles.heading_gini}
           onClick={() => setValueAndCallDirection("gini")}
         >
           <div>Gini</div>
-          {value === "Area" && <ArrowComp direction={direction} />}
+          {value === "gini" && <ArrowComp direction={direction} />}
         </button>
       </div>
       {currentCountries.map((country) => (
