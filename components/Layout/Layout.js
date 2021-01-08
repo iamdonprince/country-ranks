@@ -7,13 +7,6 @@ import styles from "./Layout.module.css";
 function Layout({ children, title = " Rank" }) {
   const [theme, setTheme] = useState("light");
 
-  const switchTheme = () => {
-    if (theme === "light") {
-      saveTheme("dark");
-    } else {
-      saveTheme("light");
-    }
-  };
 
   useEffect(() => {
     document.documentElement.setAttribute(
@@ -22,6 +15,14 @@ function Layout({ children, title = " Rank" }) {
     );
     setTheme(localStorage.getItem("theme"));
   }, []);
+  
+  const switchTheme = () => {
+    if (theme === "light") {
+      saveTheme("dark");
+    } else {
+      saveTheme("light");
+    }
+  };
   const saveTheme = (theme) => {
     setTheme(theme);
     localStorage.setItem("theme", theme);
