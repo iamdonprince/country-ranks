@@ -59,6 +59,7 @@ function CountriesTable({ countries }) {
   return (
     <div>
       <div className={styles.heading}>
+        <div className={styles.heading_flag}></div>
         <button
           className={styles.heading_name}
           onClick={() => setValueAndCallDirection("name")}
@@ -103,8 +104,8 @@ function CountriesTable({ countries }) {
             </div>
             <div className={styles.rows_name}>{country.name}</div>
             <div className={styles.rows_population}>{country.population}</div>
-            <div className={styles.rows_area}>{country.area}</div>
-            <div className={styles.rows_gini}>{country.gini}</div>
+            <div className={styles.rows_area}>{country.area || 0}</div>
+            <div className={styles.rows_gini}>{country.gini || 0}%</div>
           </div>
         </Link>
       ))}

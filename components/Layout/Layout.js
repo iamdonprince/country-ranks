@@ -1,13 +1,37 @@
+import { Brightness6Rounded } from "@material-ui/icons";
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Layout.module.css";
 
-function Layout({ children, title = "Countries Rank" }) {
+function Layout({ children, title = " Rank" }) {
+  const [theme, setTheme] = useState("light");
+  const switchTheme = () => {
+    if (theme === "light") {
+      saveTheme("dark");
+    } else {
+      saveTheme("light");
+    }
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      localStorage.getItem("theme")
+    );
+    setTheme(localStorage.getItem("theme"));
+  }, []);
+  const saveTheme = (theme) => {
+    setTheme(theme);
+    localStorage.setItem("theme", theme);
+
+    document.documentElement.setAttribute("data-theme", theme);
+  };
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>{title}</title>
+        <title>Country {title}</title>
         <link rel="stylesheet" href="/favicon.icon" />
       </Head>
       <header className={styles.header}>
@@ -50,6 +74,9 @@ function Layout({ children, title = "Countries Rank" }) {
             />
           </svg>
         </Link>
+        <button className={styles.themeSwitcher} onClick={switchTheme}>
+          <Brightness6Rounded style={{ margin: "none" }} />
+        </button>
       </header>
       <main className={styles.main}>{children}</main>
       <footer className={styles.footer}>&copy; prince kumar</footer>

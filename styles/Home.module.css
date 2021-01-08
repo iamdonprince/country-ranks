@@ -3,14 +3,15 @@
   margin: 12px 0;
 }
 
-.main {
-}
-
-.footer {
-}
-
-.footer img {
-}
-
-.footer a {
+@media screen and (min-width: 720px) {
+  .inputContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+  .counts {
+    flex: 1;
+  }
+  .input {
+    flex: 2;
+  }
 }

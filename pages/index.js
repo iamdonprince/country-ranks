@@ -26,14 +26,18 @@ export default function Home({ countries }) {
 
   return (
     <Layout className={styles.container}>
-      <div className={styles.counts}>Found {countries.length} Countries</div>
-      <SearchInput
-        onInputChange={onInputChange}
-        value={keyWords}
-        filteredSearch={filteredSearch}
-        type="text"
-        placeholder="Filter by Name, Region, Subregion"
-      />
+      <div className={styles.inputContainer}>
+        <div className={styles.counts}>Found {countries.length} Countries</div>
+        <div className={styles.input}>
+          <SearchInput
+            onInputChange={onInputChange}
+            value={keyWords}
+            filteredSearch={filteredSearch}
+            type="text"
+            placeholder="Filter by Name, Region, Subregion"
+          />
+        </div>
+      </div>
       <CountriesTable countries={filterCountries} />
     </Layout>
   );
