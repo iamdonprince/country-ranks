@@ -6,6 +6,7 @@ import styles from "./Layout.module.css";
 
 function Layout({ children, title = " Rank" }) {
   const [theme, setTheme] = useState("light");
+
   const switchTheme = () => {
     if (theme === "light") {
       saveTheme("dark");
@@ -79,6 +80,7 @@ function Layout({ children, title = " Rank" }) {
         </button>
       </header>
       <main className={styles.main}>{children}</main>
+
       <footer className={styles.footer}>&copy; prince kumar</footer>
     </div>
   );

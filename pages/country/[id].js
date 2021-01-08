@@ -14,7 +14,7 @@ const getCountry = async (id) => {
 
 function Country({ country }) {
   const [borders, setBorders] = useState([]);
-  console.log(country);
+
   const router = useRouter();
   const getBorders = async () => {
     const countryNeighbour = await Promise.all(

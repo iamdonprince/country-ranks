@@ -6,6 +6,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import styles from "./countreis.module.css";
 import Image from "next/image";
+import Pagination from "../pagination/Pagination";
 const orderBy = (countries, value, direction) => {
   if (direction === "asc") {
     return [...countries].sort((a, b) => (a[value] > b[value] ? 1 : -1));
@@ -37,9 +38,10 @@ const ArrowComp = ({ direction }) => {
 function CountriesTable({ countries }) {
   const [direction, setDirection] = useState();
   const [value, setValue] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [countryPerPage, setCountryPerPage] = useState(15);
 
   const orderdCountries = orderBy(countries, value, direction);
-  const countriesData = orderdCountries.slice(0, 10);
 
   const switchDirection = () => {
     if (!direction) {
@@ -55,6 +57,26 @@ function CountriesTable({ countries }) {
     switchDirection();
     setValue(value);
   };
+  //  pagination : setting page Number to show data
+  const changePage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  // next page
+  const incrementPage = (pageNum) => {
+    if (currentPage < pageNum) setCurrentPage(currentPage + 1);
+    return;
+  };
+
+  //  previous page
+  const decrementPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+    return;
+  };
+
+  //  pagination : slice data by 30 items
+  const lastIndexOf = currentPage * countryPerPage;
+  const firstIndexOf = lastIndexOf - countryPerPage;
+  const currentCountries = orderdCountries.slice(firstIndexOf, lastIndexOf);
 
   return (
     <div>
@@ -91,7 +113,7 @@ function CountriesTable({ countries }) {
           {value === "Area" && <ArrowComp direction={direction} />}
         </button>
       </div>
-      {countriesData.map((country) => (
+      {currentCountries.map((country) => (
         <Link href={`/country/${country.alpha2Code}`} key={country.alpha3Code}>
           <div className={styles.rows}>
             <div className={styles.rows_flag}>
@@ -109,6 +131,14 @@ function CountriesTable({ countries }) {
           </div>
         </Link>
       ))}
+      <Pagination
+        countryPerPage={countryPerPage}
+        total={countries}
+        currentPage={currentPage}
+        changePage={changePage}
+        incrementPage={incrementPage}
+        decrementPage={decrementPage}
+      />
     </div>
   );
 }
